@@ -1,4 +1,4 @@
-# Optimus Coding Tool-Ollama-
+# Optimus Coding Tool
 This is a coding helper tool similar to Claude Code but running locally using Ollama models.
 
 This code is using `ollama/qwen3:4b`. To change the model check config.py - `model`:.
