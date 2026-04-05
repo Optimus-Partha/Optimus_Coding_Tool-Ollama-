@@ -1,4 +1,4 @@
-"""System context: CLAUDE.md, git info, cwd injection."""
+"""System context: OPTIMUS.md, git info, cwd injection."""
 import os
 import subprocess
 from pathlib import Path
@@ -17,6 +17,8 @@ You help users with software engineering tasks: writing code, debugging, refacto
 - **Grep**: Search file contents with regex
 - **WebFetch**: Fetch and extract content from a URL
 - **WebSearch**: Search the web via DuckDuckGo
+- **ExcelAutomate**: Automate Excel operations based on natural language requests
+- **EmailSend**: Send an email via the SMTP2Go API
 
 # Guidelines
 - Be concise and direct. Lead with the answer.
@@ -57,25 +59,25 @@ def get_git_info() -> str:
         return ""
 
 
-def get_claude_md() -> str:
-    """Load CLAUDE.md from cwd or parents, and ~/.claude/CLAUDE.md."""
+def get_optimus_md() -> str:
+    """Load OPTIMUS.md from cwd or parents, and ~/.claude/OPTIMUS.md."""
     content_parts = []
 
-    # Global CLAUDE.md
-    global_md = Path.home() / ".claude" / "CLAUDE.md"
+    # Global OPTIMUS.md
+    global_md = Path.home() / ".claude" / "OPTIMUS.md"
     if global_md.exists():
         try:
-            content_parts.append(f"[Global CLAUDE.md]\n{global_md.read_text()}")
+            content_parts.append(f"[Global OPTIMUS.md]\n{global_md.read_text()}")
         except Exception:
             pass
 
-    # Project CLAUDE.md (walk up from cwd)
+    # Project OPTIMUS.md (walk up from cwd)
     p = Path.cwd()
     for _ in range(10):
-        candidate = p / "CLAUDE.md"
+        candidate = p / "OPTIMUS.md"
         if candidate.exists():
             try:
-                content_parts.append(f"[Project CLAUDE.md: {candidate}]\n{candidate.read_text()}")
+                content_parts.append(f"[Project OPTIMUS.md: {candidate}]\n{candidate.read_text()}")
             except Exception:
                 pass
             break
@@ -86,7 +88,7 @@ def get_claude_md() -> str:
 
     if not content_parts:
         return ""
-    return "\n# Memory / CLAUDE.md\n" + "\n\n".join(content_parts) + "\n"
+    return "\n# Memory / OPTIMUS.md\n" + "\n\n".join(content_parts) + "\n"
 
 
 def build_system_prompt() -> str:
@@ -96,5 +98,5 @@ def build_system_prompt() -> str:
         cwd=str(Path.cwd()),
         platform=platform.system(),
         git_info=get_git_info(),
-        claude_md=get_claude_md(),
+        claude_md=get_optimus_md(),
     )

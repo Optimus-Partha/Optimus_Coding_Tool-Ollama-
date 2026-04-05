@@ -3,21 +3,24 @@ import os
 import json
 from pathlib import Path
 
-CONFIG_DIR   = Path.home() / ".nano_claude"
+CONFIG_DIR   = Path.cwd() / ".optimus"
 CONFIG_FILE  = CONFIG_DIR  / "config.json"
 HISTORY_FILE = CONFIG_DIR  / "input_history.txt"
 SESSIONS_DIR = CONFIG_DIR  / "sessions"
 
 DEFAULTS = {
+    # "model":            "ollama/qwen3-coder-next:cloud",
+    # "model":            "ollama/qwen3:0.6b",
     "model":            "ollama/qwen3:4b",
     "max_tokens":       8192,
     "permission_mode":  "auto",   # auto | accept-all | manual
     "verbose":          False,
     "thinking":         False,
     "thinking_budget":  10000,
-    "custom_base_url":  "http://localhost:11434",       # for "custom" provider
+    "custom_base_url":  "http://localhost:11434",
+    # "custom_base_url":  "https://openrouter.ai/api",       # for "custom" provider
     # Per-provider API keys (optional; env vars take priority)
-    # "anthropic_api_key": "sk-ant-..."
+    # "anthropic_api_key": "",
     # "openai_api_key":    "sk-..."
     # "gemini_api_key":    "..."
     # "kimi_api_key":      "..."

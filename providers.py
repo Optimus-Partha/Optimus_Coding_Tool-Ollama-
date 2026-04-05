@@ -113,6 +113,24 @@ PROVIDERS: dict[str, dict] = {
         "base_url":   None,   # read from config["custom_base_url"]
         "models": [],
     },
+    "openrouter": {
+        "type":       "openai",
+        "api_key_env": "OPENROUTER_API_KEY",
+        "base_url":   "https://openrouter.ai/api/v1",
+        "models": [
+            "free",
+            "openrouter/meta-llama/llama-3-8b-in",
+            "google/gemma-7b-it:free",
+            "mistralai/mistral-7b-instruct:free",
+            "meta-llama/llama-3.1-8b-instruct:free",
+            "qwen/qwen-2.5-7b-instruct:free",
+            "qwen/qwen3.6-plus:free",
+            "openai/gpt-oss-20b:free",
+            "deepseek/deepseek-coder:free",
+            "huggingface/hf-model:free",
+                        "openai/gpt-3.5-turbo:free",
+        ],
+    }
 }
 
 # Cost per million tokens (approximate, fallback to 0 for unknown)
@@ -153,6 +171,12 @@ _PREFIXES = [
     ("mistral",       "ollama"),
     ("phi",           "ollama"),
     ("gemma",         "ollama"),
+    ("openrouter/",   "openrouter"),
+    ("meta-llama/",   "openrouter"),
+    ("google/",       "openrouter"),
+    ("mistralai/",    "openrouter"),
+    ("anthropic/",    "openrouter"),
+    ("huggingface/",  "openrouter"),
 ]
 
 
